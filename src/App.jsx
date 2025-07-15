@@ -272,53 +272,42 @@ function App() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                {isSubscribed ? (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="text-center py-8"
-                  >
-                    <CheckCircle className="h-16 w-16 text-green-400 mx-auto mb-4" />
-                    <h3 className="text-xl font-semibold text-white mb-2">Thank you for subscribing!</h3>
-                    <p className="text-gray-300">We'll keep you updated with the latest NOYA news.</p>
-                  </motion.div>
-                ) : (
-                  <form onSubmit={handleSubscribe} className="space-y-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="name" className="text-white">Name</Label>
-                        <Input
-                          id="name"
-                          type="text"
-                          placeholder="Your name"
-                          value={name}
-                          onChange={(e) => setName(e.target.value)}
-                          className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
-                          required
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="email" className="text-white">Email</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="your@email.com"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
-                          required
-                        />
-                      </div>
+                <form
+                  action="https://formspree.io/f/xeozjyep"
+                  method="POST"
+                  className="space-y-4"
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="email" className="text-white">Email</Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        name="email" // 关键
+                        placeholder="your@email.com"
+                        className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
+                        required
+                      />
                     </div>
-                    <Button 
-                      type="submit" 
-                      className="w-full bg-red-500 hover:bg-red-600 text-white py-3 text-lg"
-                    >
-                      <Mail className="h-5 w-5 mr-2" />
-                      Subscribe Now
-                    </Button>
-                  </form>
-                )}
+                    <div>
+                      <Label htmlFor="message" className="text-white">Message</Label>
+                      <textarea
+                        id="message"
+                        name="message" // 关键
+                        placeholder="Your message"
+                        className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 block w-full mt-2"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-red-500 hover:bg-red-600 text-white py-3 text-lg"
+                  >
+                    <Mail className="h-5 w-5 mr-2" />
+                    Send
+                  </Button>
+                </form>
               </CardContent>
             </Card>
           </motion.div>
